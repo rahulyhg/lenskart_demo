@@ -22,7 +22,7 @@ Route::get('/customers/json','CustomersController@view_customers');
 Route::get('/customers/create/{id}','CustomersController@store');
 
 
-Route::get('/subscribe/shipping/{custid}/{productid}/{planid}','SubscriptionController@shipping');
+Route::get('/subscribe/shipping/{custid}/{planid}','SubscriptionController@shipping');
 Route::get('/subscribe/{custid}/{prodid}/{planid}','SubscriptionController@subscribe');
 Route::get('/subscription/webhook' , 'SubscriptionController@webhook');
 Route::get('/subscription/cancel/{customer_id}/{plan_id}' , 'SubscriptionController@cancel');

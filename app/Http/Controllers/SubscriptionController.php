@@ -180,7 +180,7 @@ class SubscriptionController extends Controller
 
 
     //function to handle input from frontend with required fields
-    public function shipping($customer_id,$product_id, $plan_id)
+    public function shipping($customer_id, $plan_id)
     {
         //validate the request coming from frontend if post
         /* $this->validate($request, [
@@ -198,7 +198,7 @@ class SubscriptionController extends Controller
         //fetch the customer details from the database
         $customer = Customer::find($customer_id);                
         $plan = Plan::find($plan_id);
-        $product = Product::find($product_id);
+        $product = Product::find($plan['product_id']);
         $first = true;
         $shipping_fee = 100;
 
@@ -260,7 +260,7 @@ class SubscriptionController extends Controller
         $ret = [
             'RESULT' => 'SUCCESS'
         ]; 
-        return json_encode($ret);
+        echo json_encode($ret);
     }
 
     public function renew($customer_id, $product_id, $plan_id)
