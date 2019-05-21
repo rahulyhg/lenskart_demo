@@ -260,7 +260,7 @@ class SubscriptionController extends Controller
         $ret = [
             'RESULT' => 'SUCCESS'
         ]; 
-        echo json_encode($ret);
+        return json_encode($ret);
     }
 
     public function renew($customer_id, $product_id, $plan_id)
