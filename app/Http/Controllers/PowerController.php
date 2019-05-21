@@ -47,4 +47,28 @@ class PowerController extends Controller
         return redirect(url('prescriptions/upload'));
         
     }
+
+    public function update($customer_id, $r_power, $l_power)
+    {
+        $exists = LensPower::find($customer_id);
+
+        if(empty($exists))
+        {
+            $power = new LensPower();
+            $power->customer_id = $customer_id;
+            $power->power_right = $r_power;
+            $power->power_left = $l_power;
+            $power->save();      
+        }
+        else
+        {
+            $exists->power_right = $r_power;
+            $exists->power_left = $l_power;
+            $exists->save();        
+        }
+        $ret = [
+            'RESULT' => 'SUCCESS'
+        ]; 
+        return json_encode($ret);        
+    }
 }

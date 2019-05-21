@@ -37,7 +37,7 @@ class PlansController extends Controller
         $description = $request->input('description');
         $notes = $request->input('notes');
 
-        //$prod = Product::find($product_id);
+        $prod = Product::find($product_id);
         
         if(!empty($prod))
         {

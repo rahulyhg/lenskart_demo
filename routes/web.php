@@ -35,6 +35,7 @@ Route::post('/plans/store/','PlansController@store');
 Route::get('/plans/product_plans/{product_id}','PlansController@product_plans');
 
 Route::get('/eyepower/select','PowerController@create');
+Route::get('/eyepower/update/{customerid}/{r_power}/{l_power}','PowerController@update');
 Route::post('/eyepower/store','PowerController@store');
 
 Route::get('/prescriptions/upload','PrescriptionsController@create');
