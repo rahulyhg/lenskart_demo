@@ -25,7 +25,7 @@ Route::get('/customers/create/{id}','CustomersController@store');
 Route::get('/subscribe/shipping/{custid}/{planid}','SubscriptionController@shipping');
 Route::get('/subscribe/{custid}/{prodid}/{planid}','SubscriptionController@subscribe');
 Route::get('/subscription/webhook' , 'SubscriptionController@webhook');
-Route::get('/subscription/cancel' , 'SubscriptionController@cancel');
+Route::get('/subscription/cancel/{customer_id}/{plan_id}' , 'SubscriptionController@cancel');
 Route::get('/subscription/renew' , 'SubscriptionController@renew');
 
 Route::get('/products/store/{id}','ProductsController@store');
