@@ -239,7 +239,7 @@ class SubscriptionController extends Controller
 
     public function cancel($customer_id, $plan_id)
     {
-        $plan = Plan::find($plan_id);
+/*         $plan = Plan::find($plan_id);
         $customer = Customer::find($customer_id);
         $product = Product::find($plan['product_id']);
 
@@ -256,7 +256,7 @@ class SubscriptionController extends Controller
         $options = ['cancel_at_cycle_end' => 1];
 
         $subscription = $api->subscription->fetch($subscription_id)->cancel($options);
-
+ */
         $ret = [
             'RESULT' => 'SUCCESS'
         ]; 
