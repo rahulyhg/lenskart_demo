@@ -37,21 +37,33 @@ class PlansController extends Controller
         $description = $request->input('description');
         $notes = $request->input('notes');
 
-
-        $key = Config::get('constants.url.razorpay_key');
-        $secret = Config::get('constants.url.razorpay_secret');
+        //$prod = Product::find($product_id);
         
-        $api = new Api($key, $secret);
-        $plan = $api->plan->create(array(
-            'period' => $period, 
-            'interval' => $interval, 
-            'item' => array(
-                'name' => $name, 
+        if(!empty($prod))
+        {
+            return "Hello";
+            $key = Config::get('constants.url.razorpay_key');
+            $secret = Config::get('constants.url.razorpay_secret');
             
-                'description' => $description, 
-                'amount' => $amount * 100, 
-                'currency' => $currency)));
-        $this->plan_db_store($plan, $product_id);
+            $api = new Api($key, $secret);
+            $plan = $api->plan->create(array(
+                'period' => $period, 
+                'interval' => $interval, 
+                'item' => array(
+                    'name' => $name, 
+                    'description' => $description, 
+                    'amount' => $amount * 100, 
+                    'currency' => $currency)));
+            $plan = $this->fetch($plan->id);
+            $this->plan_db_store($plan, $product_id);
+
+            
+        }
+        else
+        {
+            $error = "The Product with the ID does not exist";
+            return "ERROR";
+        }
     }
 
 
@@ -59,8 +71,7 @@ class PlansController extends Controller
     {
         if(!empty($plan) && !empty($product_id))
         {
-
-            $plan = json_decode($plan, true);            
+                      
             $insertArr = array();
 
             $includes = array(
@@ -86,17 +97,8 @@ class PlansController extends Controller
                         $insertArr[$key] = $value;
                 }
             }
-
-
-            $prod = Product::find($product_id);
-            if(!empty($prod))
-                $insertArr['product_id'] = $product_id;
-            else
-            {
-                $prod = app('App\Http\Controllers\ProductsController')->fetch($product_id);    
-                $product_id = $prod['id'];
-                $insertArr['product_id'] = $product_id;
-            }
+            $insertArr['product_id'] = $product_id;
+          
 
             DB::table('plans')->insert($insertArr);    
 
@@ -112,43 +114,7 @@ class PlansController extends Controller
      
         $plan = json_decode($json, true);
 
-        if(!empty($plan))
-        {
-            $insertArr = array();
-
-            $includes = array(
-                "id" , "item.name" , "item.description", "item.amount", "item.currency" , "period" , "interval" , 
-            );
-        
-            foreach ($plan as $key => $value) {
-                # code...
-                if($key == 'item')
-                {
-                    foreach ($value as $k => $v) {
-                        if(in_array("item.$k" , $includes))
-                            $insertArr["item_$k"] = $v; 
-                    }
-                }
-                else if($key == 'notes')
-                {
-                    $value = json_encode($value);
-                    $insertArr[$key] = $value;
-                }
-                else{
-                    if(in_array($key , $includes))
-                        $insertArr[$key] = $value;
-                }
-            }
-
-            $insertArr['product_id'] = $product_id;
-            DB::table('plans')->insert($insertArr);    
-
-            return "<pre>".print_r($insertArr)."</pre>";
-        }
-        else
-        {
-
-        }
+        return $plan;
     }
 
     public function product_plans($product_id)
