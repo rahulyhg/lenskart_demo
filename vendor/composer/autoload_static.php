@@ -60,6 +60,7 @@ class ComposerStaticInit2b2e791fa3ff9ae1b493325b8f0baa9f
             'Symfony\\Component\\Debug\\' => 24,
             'Symfony\\Component\\CssSelector\\' => 30,
             'Symfony\\Component\\Console\\' => 26,
+            'Spatie\\Cors\\' => 12,
         ),
         'R' => 
         array (
@@ -227,6 +228,10 @@ class ComposerStaticInit2b2e791fa3ff9ae1b493325b8f0baa9f
         array (
             0 => __DIR__ . '/..' . '/symfony/console',
         ),
+        'Spatie\\Cors\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/spatie/laravel-cors/src',
+        ),
         'Razorpay\\Tests\\' => 
         array (
             0 => __DIR__ . '/..' . '/razorpay/razorpay/tests',
@@ -384,6 +389,7 @@ class ComposerStaticInit2b2e791fa3ff9ae1b493325b8f0baa9f
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Customer' => __DIR__ . '/../..' . '/app/Customer.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
+        'App\\FreeDay' => __DIR__ . '/../..' . '/app/FreeDay.php',
         'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
         'App\\Http\\Controllers\\Auth\\LoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/LoginController.php',
         'App\\Http\\Controllers\\Auth\\RegisterController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/RegisterController.php',
@@ -418,6 +424,7 @@ class ComposerStaticInit2b2e791fa3ff9ae1b493325b8f0baa9f
         'App\\Razor_Addon' => __DIR__ . '/../..' . '/app/Razor_Addon.php',
         'App\\Razor_Customer' => __DIR__ . '/../..' . '/app/Razor_Customer.php',
         'App\\Subscription' => __DIR__ . '/../..' . '/app/Subscription.php',
+        'App\\SubscriptionLink' => __DIR__ . '/../..' . '/app/SubscriptionLink.php',
         'App\\User' => __DIR__ . '/../..' . '/app/User.php',
         'BeyondCode\\DumpServer\\DumpServerCommand' => __DIR__ . '/..' . '/beyondcode/laravel-dump-server/src/DumpServerCommand.php',
         'BeyondCode\\DumpServer\\DumpServerServiceProvider' => __DIR__ . '/..' . '/beyondcode/laravel-dump-server/src/DumpServerServiceProvider.php',
@@ -3284,6 +3291,11 @@ class ComposerStaticInit2b2e791fa3ff9ae1b493325b8f0baa9f
         'SebastianBergmann\\Timer\\RuntimeException' => __DIR__ . '/..' . '/phpunit/php-timer/src/RuntimeException.php',
         'SebastianBergmann\\Timer\\Timer' => __DIR__ . '/..' . '/phpunit/php-timer/src/Timer.php',
         'SebastianBergmann\\Version' => __DIR__ . '/..' . '/sebastian/version/src/Version.php',
+        'Spatie\\Cors\\Cors' => __DIR__ . '/..' . '/spatie/laravel-cors/src/Cors.php',
+        'Spatie\\Cors\\CorsProfile\\CorsProfile' => __DIR__ . '/..' . '/spatie/laravel-cors/src/CorsProfile/CorsProfile.php',
+        'Spatie\\Cors\\CorsProfile\\DefaultProfile' => __DIR__ . '/..' . '/spatie/laravel-cors/src/CorsProfile/DefaultProfile.php',
+        'Spatie\\Cors\\CorsServiceProvider' => __DIR__ . '/..' . '/spatie/laravel-cors/src/CorsServiceProvider.php',
+        'Spatie\\Cors\\Exceptions\\InvalidCorsProfile' => __DIR__ . '/..' . '/spatie/laravel-cors/src/Exceptions/InvalidCorsProfile.php',
         'Symfony\\Component\\Console\\Application' => __DIR__ . '/..' . '/symfony/console/Application.php',
         'Symfony\\Component\\Console\\CommandLoader\\CommandLoaderInterface' => __DIR__ . '/..' . '/symfony/console/CommandLoader/CommandLoaderInterface.php',
         'Symfony\\Component\\Console\\CommandLoader\\ContainerCommandLoader' => __DIR__ . '/..' . '/symfony/console/CommandLoader/ContainerCommandLoader.php',
