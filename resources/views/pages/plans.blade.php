@@ -18,7 +18,7 @@
 
 <div class="se-pre-con"></div>
 
-<h1>Subscription</h1>
+<h1>Add Plan</h1>
 
 @if ($errors->any())
     <div class="alert alert-danger">
@@ -94,8 +94,8 @@
   </form>
 
 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
-<script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.2/modernizr.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.2/modernizr.js"></script>
 <script>	
 
 $(window).load(function() {

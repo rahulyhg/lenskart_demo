@@ -180,7 +180,7 @@ class SubscriptionController extends Controller
 
 
     //function to handle input from frontend with required fields
-    public function shipping($customer_id, $product_id, $plan_id)
+    public function shipping($customer_id, $plan_id)
     {
         //validate the request coming from frontend if post
         /* $this->validate($request, [
@@ -196,15 +196,12 @@ class SubscriptionController extends Controller
 
 
         //fetch the customer details from the database
-        $customer = Customer::find($customer_id);
-        $product = Product::find($product_id);
+        $customer = Customer::find($customer_id);                
         $plan = Plan::find($plan_id);
+        $product = Product::find($plan['product_id']);
         $first = true;
         $shipping_fee = 100;
 
-        //fetching the RazorPay Key and Secret from local file
-        $key = Config::get('constants.url.razorpay_key');
-        $secret = Config::get('constants.url.razorpay_secret');
 
         if(!empty($customer) && !empty($product) && !empty($plan))
         {
@@ -240,14 +237,15 @@ class SubscriptionController extends Controller
         }
     }
 
-    public function cancel($customer_id, $product_id, $plan_id)
+    public function cancel($customer_id, $plan_id)
     {
         $plan = Plan::find($plan_id);
         $customer = Customer::find($customer_id);
+        $product = Product::find($plan['product_id']);
 
         $subscription_id = SubscriptionLink::where('shopify_customer_id', $customer_id)
         ->where('plan_id', $plan['id'])
-        ->where('product_id', $product_id)
+        ->where('product_id', $product['id'])
         ->get();
 
         $key = Config::get('constants.url.razorpay_key');
