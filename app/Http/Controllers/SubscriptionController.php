@@ -13,7 +13,6 @@ use Config;
 use App\Subscription;
 use Ixudra\Curl\Facades\Curl;
 use Razorpay\Api\Errors\BadRequestError;
-use App\SubscriptionLink;
 
 class SubscriptionController extends Controller
 {
