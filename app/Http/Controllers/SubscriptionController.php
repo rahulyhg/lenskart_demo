@@ -271,19 +271,22 @@ class SubscriptionController extends Controller
         }
     }
 
-    public function cancel($customer_id, $plan_id)
+    public function cancel($customer_id, $subscription_id)
     {
-        $plan = Plan::find($plan_id);
+        
         $customer = Customer::find($customer_id);
-        $product = Product::find($plan['product_id']);
-
-        $subscription_id = SubscriptionLink::where('shopify_customer_id', $customer_id)
+       
+        /* $subscription_id = SubscriptionLink::where('shopify_customer_id', $customer_id)
         ->where('plan_id', $plan['id'])
         ->where('product_id', $product['id'])
         ->get();
-
-        $subscription = Subscription::find($subscription_id);
-
+ */ 
+        $key = Config::get('constants.url.razorpay_key');
+        $secret = Config::get('constants.url.razorpay_secret');
+        $api = new Api($key, $secret);
+        $subscription = $api->subscription->fetch($subscription_id);
+        
+       
         if(!empty($subscription))
         {
             $key = Config::get('constants.url.razorpay_key');
@@ -293,12 +296,12 @@ class SubscriptionController extends Controller
 
             $options = ['cancel_at_cycle_end' => 1];
 
-            $sub = $api->subscription->fetch($$subscription['id'])->cancel($options);
+            $sub = $api->subscription->fetch($subscription_id)->cancel($options);
     
             $ret = [
                 'RESULT' => 'SUCCESS'
             ]; 
-            return json_encode($ret);
+            return json_encode($ret['RESULT']);
         }
         $ret = [
             'RESULT' => 'FAIL'
