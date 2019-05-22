@@ -280,7 +280,7 @@ class SubscriptionController extends Controller
         ->where('plan_id', $plan['id'])
         ->where('product_id', $product['id'])
         ->get();
- */ 
+        */ 
         $key = Config::get('constants.url.razorpay_key');
         $secret = Config::get('constants.url.razorpay_secret');
         $api = new Api($key, $secret);
