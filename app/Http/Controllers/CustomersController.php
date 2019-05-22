@@ -11,7 +11,7 @@ class CustomersController extends Controller
 {
     public function index()
     {
-        $customers = DB::table('customers')->get();
+        $customers = Customer::all();
        
         return view('pages.customers')->with('customers' , $customers);
        

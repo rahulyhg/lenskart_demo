@@ -270,6 +270,10 @@ class SubscriptionController extends Controller
             //return session('first') ? "New ". $customer['id']: "OLD". $customer['id'];
             return view('pages.shipping')->with($data);
         }
+        else
+        {
+            return "Error Occured";
+        }
     }
 
     public function cancel($customer_id, $subscription_id)
@@ -316,45 +320,48 @@ class SubscriptionController extends Controller
         }
     }
 
-    public function renew($customer_id, $product_id, $plan_id)
+    public function renew($customer_id, $subscription_id)
     {
-        $plan = Plan::find($plan_id);
+        //$subscription_db = Subscription::find($subscription_id);
 
-        $customer = Customer::find($customer_id);
+        $key = Config::get('constants.url.razorpay_key');
+        $secret = Config::get('constants.url.razorpay_secret');
+        $api = new Api($key, $secret);
+        $subscription = $api->subscription->fetch($subscription_id);
 
-        $subscription_id = SubscriptionLink::where('shopify_customer_id', $customer_id)
-        ->where('plan_id', $plan['id'])
-        ->where('product_id', $product_id)
-        ->get();
+        if(!empty($subscription))
+        {        
 
+            if($subscription->status == "active" || $subscription->status == "authenticated")
+            {
+                $data['error'] = "The Subscripiton is already Active you do not need to Renew it";
+            }
+            else if($subscription->status == "pending" || $subscription->status == "completed")
+            {
+                $key = Config::get('constants.url.razorpay_key');
+                $secret = Config::get('constants.url.razorpay_secret');
 
-        $subscription_db = Subscription::find($subscription_id);
+                $api = new Api($key, $secret);
 
-        if($subscription_db['status'] == "active" || $subscription_db['status'] == "authenticated")
-        {
-            $data['error'] = "The Subscripiton is already Active you do not need to Renew it";
-        }
-        else if($subscription_db['status'] == "pending" || $subscription_db['status'] == "completed")
-        {
-            $key = Config::get('constants.url.razorpay_key');
-            $secret = Config::get('constants.url.razorpay_secret');
+                $options = ['cancel_at_cycle_end' => 1];
 
-            $api = new Api($key, $secret);
+                $subscription = $api->subscription->fetch($subscription_id)->cancel($options);
+            }
+            else if($subscription->status == "halted" )
+            {
+                $data['error'] = "We had tried to grab the payment for the subscription but failed after consecutive attempts. Please update the Card Details. So that you can enjoy continued subscription";
+            }
+            else
+            {
+                $data['error'] = "The Subscription has been cancelled or is invalid. You need to start a new subscription";
+            }
 
-            $options = ['cancel_at_cycle_end' => 1];
-
-            $subscription = $api->subscription->fetch($subscription_id)->cancel($options);
-        }
-        else if($subscription_db['status'] == "halted" )
-        {
-            $data['error'] = "We had tried to grab the payment for the subscription but failed after consecutive attempts. Please update the Card Details. So that you can enjoy continued subscription";
+            return json_encode($data);
         }
         else
         {
-            $data['error'] = "The Subscription has been cancelled or is invalid. You need to start a new subscription";
+            return "Invalid Subscription ID";
         }
-
-        return json_encode($data);
     }
 
     public function get_subscriptions_by_customer($customer_id)
