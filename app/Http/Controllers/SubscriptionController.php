@@ -13,6 +13,7 @@ use Config;
 use App\Subscription;
 use Ixudra\Curl\Facades\Curl;
 use Razorpay\Api\Errors\BadRequestError;
+use PHPUnit\Framework\Constraint\Exception;
 
 class SubscriptionController extends Controller
 {
@@ -273,6 +274,7 @@ class SubscriptionController extends Controller
 
     public function cancel($customer_id, $subscription_id)
     {
+        try{
         
         $customer = Customer::find($customer_id);
        
@@ -281,6 +283,8 @@ class SubscriptionController extends Controller
         ->where('product_id', $product['id'])
         ->get();
         */ 
+
+
         $key = Config::get('constants.url.razorpay_key');
         $secret = Config::get('constants.url.razorpay_secret');
         $api = new Api($key, $secret);
@@ -303,10 +307,13 @@ class SubscriptionController extends Controller
             ]; 
             return json_encode($ret['RESULT']);
         }
-        $ret = [
-            'RESULT' => 'FAIL'
-        ]; 
-        return json_encode($ret['RESULT']);
+        }catch(Exception $err)
+        {
+            $ret = [
+                'RESULT' => 'FAIL'
+            ]; 
+            return json_encode($ret['RESULT']);
+        }
     }
 
     public function renew($customer_id, $product_id, $plan_id)
