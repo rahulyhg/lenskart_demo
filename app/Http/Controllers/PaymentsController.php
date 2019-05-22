@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Razorpay\Api\Api;
 use Config;
 use App\Subscription;
+use App\Razor_Customer;
 use App\SubscriptionLink;
 use App\FreeDay;
 use DB;
@@ -27,106 +28,73 @@ class PaymentsController extends Controller
             $shipping = session('shipping_amount');
             $total = session('total');
             $first = session('first');
-            $razorpay_customer = session('razor_customer');
+            $razor_customer = session('razor_customer');
 
             //return $first ? "New ". $customer['id']: "OLD". $customer['id'];
             $freedays = FreeDay::where('plan_id', $plan['id'])->first();
             $subscription = session('subscription');
-             //fetching the RazorPay Key and Secret from local file
-            $key = Config::get('constants.url.razorpay_key');
-            $secret = Config::get('constants.url.razorpay_secret');
-
-            $api = new Api($key, $secret);
-
-            $customer_name = $customer['first_name'] . " " . $customer['last_name'];
-            $customer_email = $customer['email'];
-            $customer_phone = $customer['phone'];
-             
- 
-            $error = "";
-
-               
-
+            
             if($first)
             {
-                try{
+                
+                //fetching the RazorPay Key and Secret from local file
+                $key = Config::get('constants.url.razorpay_key');
+                $secret = Config::get('constants.url.razorpay_secret');
 
-                    //create a new customer on razor pay
-                    if(empty(session('razor_customer'))){
-                        $razorpay_customer = $api->customer->create(array(
-                            'name' => $customer_name,
-                            'email' => $customer_email,
-                            'contact' => $customer_phone
-                        ));
-                    }
+                $api = new Api($key, $secret);
 
-                    $total = $shipping;
-    
-                    //add 10 days to date
-                    $date = date('Y-m-d', mktime(0, 0, 0, date('m'), date('d') + $freedays['days'], date('Y')));
-    
-                    $timeNew = strtotime($date);
-    
-                    $s = array(
-                        'plan_id' => $plan['id'], 
-                        'customer_notify' => 1, 
-                        'total_count' => 6, 
-                        'start_at' => $timeNew,  
-                        'customer_id' => $razorpay_customer['id'],                      
-                        'addons' => array(
-                            array(
-                                'item' => array(
-                                    'name' => 'Shipping Charges', 
-                                    'amount' => $total * 100, 
-                                    'currency' => 'INR'
-                                )
+                $total = $shipping;
+
+                //add 10 days to date
+                $date = date('Y-m-d', mktime(0, 0, 0, date('m'), date('d') + $freedays['days'], date('Y')));
+
+                $timeNew = strtotime($date);
+
+                $s = array(
+                    'plan_id' => $plan['id'], 
+                    'customer_notify' => 1, 
+                    'total_count' => 6, 
+                    'start_at' => $timeNew,  
+                    'customer_id' => $razor_customer['id'],                      
+                    'addons' => array(
+                        array(
+                            'item' => array(
+                                'name' => 'Shipping Charges', 
+                                'amount' => $total * 100, 
+                                'currency' => 'INR'
                             )
-                    ));
-                    if(empty(session('subscription')))
-                        $subscription  = $api->subscription->create($s); 
-                }
-                catch(BadRequestError $err){
-                    $err_message = $err->getMessage();
-                    if($err_message == "Customer already exists for the merchant")
-                    {
-                        $first = false;                    
-                    }
-                }           
-
+                        )
+                ));
+                if(empty(session('subscription')))
+                    $subscription  = $api->subscription->create($s); 
                
             }
             else
             {    
                 // get details of existing customer
-                $customer_details = SubscriptionLink::where('plan_id' , $plan['id'])
-                ->where('shopify_customer_id', $customer['id'])->first();
+                $razor_customer = Razor_Customer::where('shopify_customer_id', $customer['id'])->get();
 
-                $razorpay_customer = $customer_details['razor_customer_id'];  
-                $subscription_id = $customer_details['subscription_id'];
+                $subs = Subscription::where('customer_id', $razor_customer['id'])
+                ->where('plan_id', $plan['id'])->first();
+
+                $subscription_id = $subs['id'];
 
                 //return $subscription_id;
                 $check = Subscription::find($subscription_id);
                 
                 if($check['status'] == 'active' || $check['status'] == 'authenticated')
                 {
-                    //return $check['status'];
-                    $error = "You already have an active subscription for the product. Go to the Accounts Page to change your subscription plan";
-                    /* $total = $plan['item_amount'];
-                    $shipping = 0;
-                    $date_to_start = strtotime("+1 days", $check['end_at']);
-                    $s = array(
-                        'plan_id' => $plan['id'], 
-                        'customer_notify' => 1, 
-                        'customer_id' => $razorpay_customer, 
-                        'total_count' => 6, 
-                        'start_at' => $date_to_start                    
-                    );
-                    if(empty(session('subscription')))
-                        $subscription  = $api->subscription->create($s);  */
+                    $error = "You already have an active subscription for the product. Go to the Accounts Page to change your subscription plan";                  
+                } 
+                else if($check['status'] == 'cancelled' || $check['status'] == 'expired')
+                {
+                    $error = "You already have a cancelled/expired subscription for the Product. You need to create a new Subscription";                  
+                }
+                else
+                {
+                    $error = "You already have an active subscription for the product. Go to the Accounts Page to change your subscription plan";                  
                 }              
-            }
-            
-           
+            }           
 
             $data = array(
                 'customer' => $customer,
@@ -137,8 +105,8 @@ class PaymentsController extends Controller
                 'total' => $total,
                 'subscription' => $subscription,
                 'key' => $key,
-                'error' => $error,
-                'razor_customer' => $razorpay_customer
+                'error' => isset($error) ? $error : null,
+                'razor_customer' => $razor_customer
             );
 
             session($data);

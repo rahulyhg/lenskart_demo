@@ -206,13 +206,47 @@ class SubscriptionController extends Controller
         if(!empty($customer) && !empty($product) && !empty($plan))
         {
 
-            $exists = SubscriptionLink::where('plan_id' , $plan['id'])
-                ->where('shopify_customer_id' , $customer['id'])->exists();
+            $razor_customer = Razor_Customer::where('shopify_customer_id' , $customer['id'])->exists();
            
-            if($exists)
-            {                
-                $first = false;
+            if(!empty($razor_customer))
+            {        
+                $subs = Subscription::where('customer_id', $razor_customer['id'])
+                ->where('plan_id', $plan['id']);
+                if(!empty($subs))
+                    $first = false;                
                 //return $first ? "New ". $customer['id']: "OLD". $customer['id'];
+            }
+            else{
+                try{
+
+                    //fetching the RazorPay Key and Secret from local file
+                    $key = Config::get('constants.url.razorpay_key');
+                    $secret = Config::get('constants.url.razorpay_secret');
+                    $api = new Api($key, $secret);
+
+                    $customer_name = $customer['first_name'] . " " . $customer['last_name'];
+                    $customer_email = $customer['email'];
+                    $customer_phone = $customer['phone'];
+            
+
+                    $razor_customer = $api->customer->create(array(
+                        'name' => $customer_name,
+                        'email' => $customer_email,
+                        'contact' => $customer_phone
+                    ));
+                    
+                    $new_customer = new Razor_Customer();
+                    $new_customer->id = $razor_customer->id;
+                    $new_customer->shopify_customer_id = $customer['id'];
+                    $new_customer->name = $customer_name;
+                    $new_customer->email = $customer_email;
+                    $new_customer->contact = $customer_phone;
+                    $new_customer->save();
+                    
+                }catch(BadRequestError $err){
+                    $error = $err->getMessage();  
+
+                }    
             }
 
             if($first)
@@ -226,7 +260,8 @@ class SubscriptionController extends Controller
                 'plan' => $plan,
                 'total' => $total,
                 'first' => $first,
-                'shipping_amount' => $shipping_fee
+                'shipping_amount' => $shipping_fee,
+                'razor_customer' => $razor_customer
             );
 
 
@@ -239,7 +274,7 @@ class SubscriptionController extends Controller
 
     public function cancel($customer_id, $plan_id)
     {
-/*         $plan = Plan::find($plan_id);
+        $plan = Plan::find($plan_id);
         $customer = Customer::find($customer_id);
         $product = Product::find($plan['product_id']);
 
@@ -248,19 +283,28 @@ class SubscriptionController extends Controller
         ->where('product_id', $product['id'])
         ->get();
 
-        $key = Config::get('constants.url.razorpay_key');
-        $secret = Config::get('constants.url.razorpay_secret');
+        $subscription = Subscription::find($subscription_id);
 
-        $api = new Api($key, $secret);
+        if(!empty($subscription))
+        {
+            $key = Config::get('constants.url.razorpay_key');
+            $secret = Config::get('constants.url.razorpay_secret');
 
-        $options = ['cancel_at_cycle_end' => 1];
+            $api = new Api($key, $secret);
 
-        $subscription = $api->subscription->fetch($subscription_id)->cancel($options);
- */
+            $options = ['cancel_at_cycle_end' => 1];
+
+            $sub = $api->subscription->fetch($$subscription['id'])->cancel($options);
+    
+            $ret = [
+                'RESULT' => 'SUCCESS'
+            ]; 
+            return json_encode($ret);
+        }
         $ret = [
-            'RESULT' => 'SUCCESS'
+            'RESULT' => 'FAIL'
         ]; 
-        return json_encode($ret);
+        return json_encode($ret['RESULT']);
     }
 
     public function renew($customer_id, $product_id, $plan_id)
@@ -302,5 +346,35 @@ class SubscriptionController extends Controller
         }
 
         return json_encode($data);
+    }
+
+    public function get_subscriptions_by_customer($customer_id)
+    {
+        if(!empty($customer_id))
+        {
+            $razor_customer = Razor_Customer::where('shopify_customer_id', $customer_id)->get();
+            
+            if(!empty($razor_customer)){
+                $razor_customer_id = $razor_customer['id'];
+                $subscriptions = Subscription::where('customer_id', $razor_customer_id);
+
+                $ret = [
+                    'RESULT' => 'SUCCESS',
+                    'subscriptions' => $subscriptions
+                ]; 
+                return json_encode($ret);
+            }
+            else{
+                $ret = [
+                    'RESULT' => 'FAIL'
+                ]; 
+                return json_encode($ret);
+            }
+
+        }
+        $ret = [
+            'RESULT' => 'FAIL'
+        ]; 
+        return json_encode($ret);
     }
 }

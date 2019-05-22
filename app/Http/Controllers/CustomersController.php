@@ -11,7 +11,7 @@ class CustomersController extends Controller
 {
     public function index()
     {
-        $customers = Customer::all();
+        $customers = DB::table('customers')->get();
        
         return view('pages.customers')->with('customers' , $customers);
        
@@ -84,7 +84,7 @@ class CustomersController extends Controller
 
     public function store($id)
     {
-         $customer_url = Config::get('constants.url.base_url')."customers/".$id.".json";
+        $customer_url = Config::get('constants.url.base_url')."customers/".$id.".json";
         
         $json = file_get_contents($customer_url);
 
