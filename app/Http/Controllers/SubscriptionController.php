@@ -298,9 +298,9 @@ class SubscriptionController extends Controller
 
             $api = new Api($key, $secret);
 
-            $options = ['cancel_at_cycle_end' => 1];
+            //$options = ['cancel_at_cycle_end' => 1];
 
-            $sub = $api->subscription->fetch($subscription_id)->cancel($options);
+            $sub = $api->subscription->fetch($subscription_id)->cancel();
     
             $ret = [
                 'RESULT' => 'SUCCESS'
