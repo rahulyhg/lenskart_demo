@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 20, 2019 at 12:17 PM
+-- Generation Time: May 23, 2019 at 01:52 PM
 -- Server version: 10.1.25-MariaDB
 -- PHP Version: 7.1.7
 
@@ -32,10 +32,10 @@ CREATE TABLE `customers` (
   `id` bigint(20) NOT NULL,
   `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `accepts_marketing` tinyint(1) DEFAULT '0',
-  `created_at` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `updated_at` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `first_name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `last_name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `updated_at` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `first_name` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `last_name` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `orders_count` int(11) DEFAULT '0',
   `state` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `total_spent` double DEFAULT '0',
@@ -60,10 +60,7 @@ CREATE TABLE `customers` (
 --
 
 INSERT INTO `customers` (`id`, `email`, `accepts_marketing`, `created_at`, `updated_at`, `first_name`, `last_name`, `orders_count`, `state`, `total_spent`, `last_order_id`, `note`, `verified_email`, `multipass_identifier`, `tax_exempt`, `phone`, `tags`, `last_order_name`, `currency`, `addresses`, `accepts_marketing_updated_at`, `marketing_opt_in_level`, `admin_graphql_api_id`, `default_address`) VALUES
-(1227653480508, 'sdfgsfgdfg@gmail.com', 0, '2019-02-26T19:15:20+05:30', '2019-03-02T17:17:13+05:30', 'sfds', 'sddsf', 11, 'disabled', 0, 943831679036, NULL, 1, NULL, 0, NULL, 'retail-customer', '#1806', 'INR', '[{\"id\":1302628532284,\"customer_id\":1227653480508,\"first_name\":\"sfds\",\"last_name\":\"sddsf\",\"company\":\"\",\"address1\":\"dffdf\",\"address2\":\"\",\"city\":\"dfdf\",\"province\":\"Karnataka\",\"country\":\"India\",\"zip\":\"454551\",\"phone\":\"3456 879 80\",\"name\":\"sfds sddsf\",\"province_code\":\"KA\",\"country_code\":\"IN\",\"country_name\":\"India\",\"default\":true}]', '2019-02-26T19:15:20+05:30', NULL, 'gid://shopify/Customer/1227653480508', '{\"id\":1302628532284,\"customer_id\":1227653480508,\"first_name\":\"sfds\",\"last_name\":\"sddsf\",\"company\":\"\",\"address1\":\"dffdf\",\"address2\":\"\",\"city\":\"dfdf\",\"province\":\"Karnataka\",\"country\":\"India\",\"zip\":\"454551\",\"phone\":\"3456 879 80\",\"name\":\"sfds sddsf\",\"province_code\":\"KA\",\"country_code\":\"IN\",\"country_name\":\"India\",\"default\":true}'),
-(1301116518460, 'goldenjordy14@gmail.com', 0, '2019-04-17T11:49:21+05:30', '2019-04-17T11:49:21+05:30', 'Golden', 'Jordy', 0, 'disabled', 0, NULL, NULL, 1, NULL, 0, NULL, '', NULL, 'INR', '[{\"id\":1411958931516,\"customer_id\":1323698913340,\"first_name\":\"sanjeev\",\"last_name\":\"test\",\"company\":\"Testrr\",\"address1\":\"test\",\"address2\":\"test\",\"city\":\"test\",\"province\":\"Assam\",\"country\":\"India\",\"zip\":\"110024\",\"phone\":\"01234567890\",\"name\":\"sanjeev test\",\"province_code\":\"AS\",\"country_code\":\"IN\",\"country_name\":\"India\",\"default\":true}]', '2019-04-17T11:49:21+05:30', NULL, 'gid://shopify/Customer/1301116518460', '{\"id\":1302628532284,\"customer_id\":1227653480508,\"first_name\":\"sfds\",\"last_name\":\"sddsf\",\"company\":\"\",\"address1\":\"dffdf\",\"address2\":\"\",\"city\":\"dfdf\",\"province\":\"Karnataka\",\"country\":\"India\",\"zip\":\"454551\",\"phone\":\"3456 879 80\",\"name\":\"sfds sddsf\",\"province_code\":\"KA\",\"country_code\":\"IN\",\"country_name\":\"India\",\"default\":true}'),
-(1310133747772, 'abhishek123@gmail.com', 0, '2019-04-22T12:15:19+05:30', '2019-04-22T12:15:19+05:30', 'Abhishek', 'Singh', 0, 'disabled', 0, NULL, NULL, 1, NULL, 0, NULL, '', NULL, 'INR', '[{\"id\":1411958931516,\"customer_id\":1323698913340,\"first_name\":\"sanjeev\",\"last_name\":\"test\",\"company\":\"Testrr\",\"address1\":\"test\",\"address2\":\"test\",\"city\":\"test\",\"province\":\"Assam\",\"country\":\"India\",\"zip\":\"110024\",\"phone\":\"01234567890\",\"name\":\"sanjeev test\",\"province_code\":\"AS\",\"country_code\":\"IN\",\"country_name\":\"India\",\"default\":true}]', '2019-04-22T12:15:19+05:30', NULL, 'gid://shopify/Customer/1310133747772', '[{\"id\":1411958931516,\"customer_id\":1323698913340,\"first_name\":\"sanjeev\",\"last_name\":\"test\",\"company\":\"Testrr\",\"address1\":\"test\",\"address2\":\"test\",\"city\":\"test\",\"province\":\"Assam\",\"country\":\"India\",\"zip\":\"110024\",\"phone\":\"01234567890\",\"name\":\"sanjeev test\",\"province_code\":\"AS\",\"country_code\":\"IN\",\"country_name\":\"India\",\"default\":true}]'),
-(1323698913340, 'sanjeev+1@marmeto.com', 0, '2019-04-30T12:17:45+05:30', '2019-05-03T16:23:51+05:30', 'sanjeev', 'test', 4, 'disabled', 60, 1025746796604, NULL, 1, NULL, 0, NULL, '', '#2046', 'INR', '[{\"id\":1411958931516,\"customer_id\":1323698913340,\"first_name\":\"sanjeev\",\"last_name\":\"test\",\"company\":\"Testrr\",\"address1\":\"test\",\"address2\":\"test\",\"city\":\"test\",\"province\":\"Assam\",\"country\":\"India\",\"zip\":\"110024\",\"phone\":\"01234567890\",\"name\":\"sanjeev test\",\"province_code\":\"AS\",\"country_code\":\"IN\",\"country_name\":\"India\",\"default\":true}]', '2019-04-30T12:17:45+05:30', NULL, 'gid://shopify/Customer/1323698913340', '{\"id\":1411958931516,\"customer_id\":1323698913340,\"first_name\":\"sanjeev\",\"last_name\":\"test\",\"company\":\"Testrr\",\"address1\":\"test\",\"address2\":\"test\",\"city\":\"test\",\"province\":\"Assam\",\"country\":\"India\",\"zip\":\"110024\",\"phone\":\"01234567890\",\"name\":\"sanjeev test\",\"province_code\":\"AS\",\"country_code\":\"IN\",\"country_name\":\"India\",\"default\":true}');
+(1096248983618, '7406366665@guest.com', 0, '2019-05-23T02:16:49+05:30', '2019-05-23T15:00:57+05:30', 'Marmeto', 'Test', 4, 'enabled', 0, 1001684533314, NULL, 0, NULL, 0, 917406366665, 'allowfree', '#1039', 'INR', '[{\"id\":1240152473666,\"customer_id\":1096248983618,\"first_name\":\"Marmeto\",\"last_name\":\"Test\",\"company\":\"marmeto.com\",\"address1\":\"Bellandur\",\"address2\":\"\",\"city\":\"Bangalore\",\"province\":\"Karnataka\",\"country\":\"India\",\"zip\":\"560103\",\"phone\":\"7406366665\",\"name\":\"Marmeto Test\",\"province_code\":\"KA\",\"country_code\":\"IN\",\"country_name\":\"India\",\"default\":false},{\"id\":1240242487362,\"customer_id\":1096248983618,\"first_name\":\"Marmeto\",\"last_name\":\"Test\",\"company\":null,\"address1\":\"Marmeto Bellandur\",\"address2\":null,\"city\":\"Bengaluru\",\"province\":\"Karnataka\",\"country\":\"India\",\"zip\":\"560076\",\"phone\":\"7406366665\",\"name\":\"Marmeto Test\",\"province_code\":\"KA\",\"country_code\":\"IN\",\"country_name\":\"India\",\"default\":true}]', '2019-05-23T02:16:49+05:30', NULL, 'gid://shopify/Customer/1096248983618', '{\"id\":1240242487362,\"customer_id\":1096248983618,\"first_name\":\"Marmeto\",\"last_name\":\"Test\",\"company\":null,\"address1\":\"Marmeto Bellandur\",\"address2\":null,\"city\":\"Bengaluru\",\"province\":\"Karnataka\",\"country\":\"India\",\"zip\":\"560076\",\"phone\":\"7406366665\",\"name\":\"Marmeto Test\",\"province_code\":\"KA\",\"country_code\":\"IN\",\"country_name\":\"India\",\"default\":true}');
 
 -- --------------------------------------------------------
 
@@ -82,7 +79,7 @@ CREATE TABLE `freedays` (
 --
 
 INSERT INTO `freedays` (`id`, `days`, `plan_id`) VALUES
-(1, 10, 'plan_CVKxrA1xXVEubO');
+(1, 10, 'plan_CYdUixhQWdC8O7');
 
 -- --------------------------------------------------------
 
@@ -91,9 +88,10 @@ INSERT INTO `freedays` (`id`, `days`, `plan_id`) VALUES
 --
 
 CREATE TABLE `lens_powers` (
+  `id` int(11) NOT NULL,
   `customer_id` varchar(191) NOT NULL,
-  `power_right` double NOT NULL,
-  `power_left` double NOT NULL,
+  `power_right` varchar(5) NOT NULL,
+  `power_left` varchar(5) NOT NULL,
   `created_at` varchar(100) NOT NULL,
   `updated_at` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -102,8 +100,8 @@ CREATE TABLE `lens_powers` (
 -- Dumping data for table `lens_powers`
 --
 
-INSERT INTO `lens_powers` (`customer_id`, `power_right`, `power_left`, `created_at`, `updated_at`) VALUES
-('2147483647', -4.25, -4.25, '2019-05-15 08:22:32', '2019-05-16 05:40:38');
+INSERT INTO `lens_powers` (`id`, `customer_id`, `power_right`, `power_left`, `created_at`, `updated_at`) VALUES
+(1, '1310133747772', '+1', '+2.5', '2019-05-22 10:32:45', '2019-05-22 10:33:26');
 
 -- --------------------------------------------------------
 
@@ -135,66 +133,85 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 
 CREATE TABLE `orders` (
   `id` varchar(191) NOT NULL,
-  `billing_address` text NOT NULL,
-  `browser_ip` varchar(191) NOT NULL,
-  `buyer_accepts_marketing` tinyint(4) NOT NULL,
-  `cancel_reason` varchar(191) NOT NULL,
-  `cancelled_at` varchar(191) NOT NULL,
-  `cart_token` varchar(191) NOT NULL,
-  `client_details` text NOT NULL,
-  `closed_at` varchar(191) NOT NULL,
-  `created_at` int(11) NOT NULL,
-  `currency` int(11) NOT NULL,
-  `customer` text NOT NULL,
-  `customer_locale` varchar(191) NOT NULL,
-  `discount_applications` text NOT NULL,
-  `discount_codes` text NOT NULL,
-  `email` varchar(191) NOT NULL,
-  `financial_status` varchar(191) NOT NULL,
-  `fulfillments` text NOT NULL,
-  `fulfillment_status` varchar(191) NOT NULL,
-  `gateway` varchar(191) NOT NULL,
-  `app_id` varchar(191) NOT NULL,
-  `landing_site` varchar(191) NOT NULL,
-  `line_items` text NOT NULL,
-  `location_id` varchar(191) NOT NULL,
-  `name` varchar(191) NOT NULL,
-  `note` text NOT NULL,
-  `note_attributes` text NOT NULL,
-  `number` varchar(191) NOT NULL,
-  `order_number` varchar(191) NOT NULL,
-  `payment_details` text NOT NULL,
-  `payment_gateway_names` text NOT NULL,
-  `phone` varchar(191) NOT NULL,
-  `presentment_currency` varchar(191) NOT NULL,
-  `processed_at` varchar(191) NOT NULL,
-  `processing_method` varchar(191) NOT NULL,
-  `referring_site` varchar(191) NOT NULL,
-  `refunds` text NOT NULL,
-  `shipping_address` text NOT NULL,
-  `shipping_lines` text NOT NULL,
-  `source_name` text NOT NULL,
-  `subtotal_price` double NOT NULL,
-  `subtotal_price_set` text NOT NULL,
-  `tags` text NOT NULL,
-  `tax_lines` text NOT NULL,
-  `taxes_included` tinyint(4) NOT NULL,
-  `test` tinyint(4) NOT NULL,
-  `token` varchar(191) NOT NULL,
-  `total_discounts` double NOT NULL,
-  `total_discounts_set` text NOT NULL,
-  `total_line_items_price` double NOT NULL,
-  `total_line_items_price_set` text NOT NULL,
-  `total_price` double NOT NULL,
-  `total_price_set` text NOT NULL,
-  `total_tax` double NOT NULL,
-  `total_tax_set` text NOT NULL,
-  `total_tip_received` double NOT NULL,
-  `total_weight` double NOT NULL,
-  `updated_at` varchar(191) NOT NULL,
-  `user_id` varchar(191) NOT NULL,
-  `order_status_url` text NOT NULL
+  `billing_address` text,
+  `browser_ip` varchar(191) DEFAULT NULL,
+  `buyer_accepts_marketing` tinyint(4) DEFAULT NULL,
+  `cancel_reason` varchar(191) DEFAULT NULL,
+  `cancelled_at` varchar(191) DEFAULT NULL,
+  `cart_token` varchar(191) DEFAULT NULL,
+  `confirmed` varchar(10) DEFAULT NULL,
+  `client_details` text,
+  `closed_at` varchar(191) DEFAULT NULL,
+  `created_at` varchar(100) DEFAULT NULL,
+  `currency` varchar(5) DEFAULT NULL,
+  `customer` text,
+  `customer_locale` varchar(191) DEFAULT NULL,
+  `checkout_token` varchar(191) DEFAULT NULL,
+  `discount_applications` text,
+  `discount_codes` text,
+  `device_id` varchar(191) DEFAULT NULL,
+  `email` varchar(191) DEFAULT NULL,
+  `financial_status` varchar(191) DEFAULT NULL,
+  `fulfillments` text,
+  `fulfillment_status` varchar(191) DEFAULT NULL,
+  `gateway` varchar(191) DEFAULT NULL,
+  `app_id` varchar(191) DEFAULT NULL,
+  `landing_site` varchar(191) DEFAULT NULL,
+  `line_items` text,
+  `location_id` varchar(191) DEFAULT NULL,
+  `name` varchar(191) DEFAULT NULL,
+  `note` text,
+  `note_attributes` text,
+  `number` varchar(191) DEFAULT NULL,
+  `order_number` varchar(191) DEFAULT NULL,
+  `payment_details` text,
+  `payment_gateway_names` text,
+  `phone` varchar(191) DEFAULT NULL,
+  `presentment_currency` varchar(191) DEFAULT NULL,
+  `processed_at` varchar(191) DEFAULT NULL,
+  `processing_method` varchar(191) DEFAULT NULL,
+  `referring_site` varchar(191) DEFAULT NULL,
+  `refunds` text,
+  `reference` varchar(191) DEFAULT NULL,
+  `shipping_address` text,
+  `shipping_lines` text,
+  `source_name` text,
+  `subtotal_price` double DEFAULT NULL,
+  `subtotal_price_set` text,
+  `source_identifier` varchar(191) DEFAULT NULL,
+  `source_url` text,
+  `tags` text,
+  `tax_lines` text,
+  `taxes_included` tinyint(4) DEFAULT NULL,
+  `test` tinyint(4) DEFAULT NULL,
+  `token` varchar(191) DEFAULT NULL,
+  `total_discounts` double DEFAULT NULL,
+  `total_discounts_set` text,
+  `total_line_items_price` varchar(100) DEFAULT NULL,
+  `total_line_items_price_set` text,
+  `total_price` double DEFAULT NULL,
+  `total_price_set` text,
+  `total_price_usd` double DEFAULT NULL,
+  `total_tax` double DEFAULT NULL,
+  `total_tax_set` text,
+  `total_tip_received` double DEFAULT NULL,
+  `total_weight` double DEFAULT NULL,
+  `updated_at` varchar(191) DEFAULT NULL,
+  `user_id` varchar(191) DEFAULT NULL,
+  `order_status_url` text,
+  `landing_site_ref` varchar(191) DEFAULT NULL,
+  `checkout_id` varchar(191) DEFAULT NULL,
+  `contact_email` varchar(191) DEFAULT NULL,
+  `total_shipping_price_set` varchar(191) DEFAULT NULL,
+  `admin_graphql_api_id` varchar(191) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`id`, `billing_address`, `browser_ip`, `buyer_accepts_marketing`, `cancel_reason`, `cancelled_at`, `cart_token`, `confirmed`, `client_details`, `closed_at`, `created_at`, `currency`, `customer`, `customer_locale`, `checkout_token`, `discount_applications`, `discount_codes`, `device_id`, `email`, `financial_status`, `fulfillments`, `fulfillment_status`, `gateway`, `app_id`, `landing_site`, `line_items`, `location_id`, `name`, `note`, `note_attributes`, `number`, `order_number`, `payment_details`, `payment_gateway_names`, `phone`, `presentment_currency`, `processed_at`, `processing_method`, `referring_site`, `refunds`, `reference`, `shipping_address`, `shipping_lines`, `source_name`, `subtotal_price`, `subtotal_price_set`, `source_identifier`, `source_url`, `tags`, `tax_lines`, `taxes_included`, `test`, `token`, `total_discounts`, `total_discounts_set`, `total_line_items_price`, `total_line_items_price_set`, `total_price`, `total_price_set`, `total_price_usd`, `total_tax`, `total_tax_set`, `total_tip_received`, `total_weight`, `updated_at`, `user_id`, `order_status_url`, `landing_site_ref`, `checkout_id`, `contact_email`, `total_shipping_price_set`, `admin_graphql_api_id`) VALUES
+('1001684533314', NULL, NULL, 0, NULL, NULL, NULL, '1', NULL, NULL, '2019-05-23T15:00:57+05:30', 'INR', '{\"id\":1096248983618,\"email\":\"7406366665@guest.com\",\"accepts_marketing\":false,\"created_at\":\"2019-05-23T02:16:49+05:30\",\"updated_at\":\"2019-05-23T15:00:57+05:30\",\"first_name\":\"Marmeto\",\"last_name\":\"Test\",\"orders_count\":4,\"state\":\"enabled\",\"total_spent\":\"0.00\",\"last_order_id\":1001684533314,\"note\":null,\"verified_email\":false,\"multipass_identifier\":null,\"tax_exempt\":false,\"phone\":\"+917406366665\",\"tags\":\"allowfree\",\"last_order_name\":\"#1039\",\"currency\":\"INR\",\"accepts_marketing_updated_at\":\"2019-05-23T02:16:49+05:30\",\"marketing_opt_in_level\":null,\"admin_graphql_api_id\":\"gid:\\/\\/shopify\\/Customer\\/1096248983618\",\"default_address\":{\"id\":1240242487362,\"customer_id\":1096248983618,\"first_name\":\"Marmeto\",\"last_name\":\"Test\",\"company\":null,\"address1\":\"Marmeto Bellandur\",\"address2\":null,\"city\":\"Bengaluru\",\"province\":\"Karnataka\",\"country\":\"India\",\"zip\":\"560076\",\"phone\":\"7406366665\",\"name\":\"Marmeto Test\",\"province_code\":\"KA\",\"country_code\":\"IN\",\"country_name\":\"India\",\"default\":true}}', NULL, NULL, '[]', '[]', NULL, '7406366665@guest.com', 'paid', '[]', NULL, '', '2923367', NULL, '[{\"id\":2148365402178,\"variant_id\":15240701345858,\"title\":\"Aqualens Daily Contact Lenses\",\"quantity\":1,\"sku\":\"134722\",\"variant_title\":\"10 Pairs \\/ 1 Month\",\"vendor\":\"Aqualens\",\"fulfillment_service\":\"manual\",\"product_id\":1796282515522,\"requires_shipping\":true,\"taxable\":true,\"gift_card\":false,\"name\":\"Aqualens Daily Contact Lenses - 10 Pairs \\/ 1 Month\",\"variant_inventory_management\":\"shopify\",\"properties\":[],\"product_exists\":true,\"fulfillable_quantity\":1,\"grams\":0,\"price\":\"0.00\",\"total_discount\":\"0.00\",\"fulfillment_status\":null,\"price_set\":{\"shop_money\":{\"amount\":\"0.00\",\"currency_code\":\"INR\"},\"presentment_money\":{\"amount\":\"0.00\",\"currency_code\":\"INR\"}},\"total_discount_set\":{\"shop_money\":{\"amount\":\"0.00\",\"currency_code\":\"INR\"},\"presentment_money\":{\"amount\":\"0.00\",\"currency_code\":\"INR\"}},\"discount_allocations\":[],\"admin_graphql_api_id\":\"gid:\\/\\/shopify\\/LineItem\\/2148365402178\",\"tax_lines\":[]}]', NULL, '#1039', NULL, '[]', '39', '1039', NULL, '[]', NULL, 'INR', '2019-05-23T15:00:57+05:30', '', NULL, '[]', NULL, '{\"first_name\":\"Marmeto\",\"address1\":\"Marmeto Bellandur\",\"phone\":\"7406366665\",\"city\":\"Bengaluru\",\"zip\":\"560076\",\"province\":\"Karnataka\",\"country\":\"India\",\"last_name\":\"Test\",\"address2\":null,\"company\":null,\"latitude\":null,\"longitude\":null,\"name\":\"Marmeto Test\",\"country_code\":\"IN\",\"province_code\":\"KA\"}', '[]', '2923367', 0, '{\"shop_money\":{\"amount\":\"0.00\",\"currency_code\":\"INR\"},\"presentment_money\":{\"amount\":\"0.00\",\"currency_code\":\"INR\"}}', NULL, NULL, '', '[]', 0, 0, '6ad39c14dadeba57ac8efb1fa7b435c7', 0, '{\"shop_money\":{\"amount\":\"0.00\",\"currency_code\":\"INR\"},\"presentment_money\":{\"amount\":\"0.00\",\"currency_code\":\"INR\"}}', '\"0.00\"', '{\"shop_money\":{\"amount\":\"0.00\",\"currency_code\":\"INR\"},\"presentment_money\":{\"amount\":\"0.00\",\"currency_code\":\"INR\"}}', 0, '{\"shop_money\":{\"amount\":\"0.00\",\"currency_code\":\"INR\"},\"presentment_money\":{\"amount\":\"0.00\",\"currency_code\":\"INR\"}}', 0, 0, '{\"shop_money\":{\"amount\":\"0.00\",\"currency_code\":\"INR\"},\"presentment_money\":{\"amount\":\"0.00\",\"currency_code\":\"INR\"}}', 0, 0, '2019-05-23T15:00:57+05:30', NULL, 'https://checkout.shopify.com/8469577794/orders/6ad39c14dadeba57ac8efb1fa7b435c7/authenticate?key=3af52e85ba778896b8069b7e04ee9d05', NULL, NULL, '7406366665@guest.com', '{\"shop_money\":{\"amount\":\"0.00\",\"currency_code\":\"INR\"},\"presentment_money\":{\"amount\":\"0.00\",\"currency_code\":\"INR\"}}', 'gid://shopify/Order/1001684533314');
 
 -- --------------------------------------------------------
 
@@ -217,6 +234,7 @@ CREATE TABLE `password_resets` (
 CREATE TABLE `plans` (
   `id` varchar(191) NOT NULL,
   `item_name` varchar(191) DEFAULT NULL,
+  `product_id` varchar(191) NOT NULL,
   `item_description` text,
   `item_amount` int(11) NOT NULL,
   `item_currency` varchar(10) NOT NULL,
@@ -229,8 +247,9 @@ CREATE TABLE `plans` (
 -- Dumping data for table `plans`
 --
 
-INSERT INTO `plans` (`id`, `item_name`, `item_description`, `item_amount`, `item_currency`, `period`, `interval`, `notes`) VALUES
-('plan_CVKxrA1xXVEubO', '1 Month Plan', NULL, 300, 'INR', 'monthly', 1, '[]');
+INSERT INTO `plans` (`id`, `item_name`, `product_id`, `item_description`, `item_amount`, `item_currency`, `period`, `interval`, `notes`) VALUES
+('plan_CYdUixhQWdC8O7', '1 Month', '1796282515522', 'Great Budget Plan', 30000, 'INR', 'monthly', 1, '[]'),
+('plan_CYdVM1aernWGJ4', '2 Month', '1796282515522', 'Great Budget Plan', 30000, 'INR', 'monthly', 1, '[]');
 
 -- --------------------------------------------------------
 
@@ -246,15 +265,6 @@ CREATE TABLE `prescriptions` (
   `created_at` varchar(191) NOT NULL,
   `updated_at` varchar(191) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `prescriptions`
---
-
-INSERT INTO `prescriptions` (`id`, `customer_id`, `name`, `path`, `created_at`, `updated_at`) VALUES
-(1, '2147483647', 'Capture_1557923399', 'prescriptions/Lt2h37ZszvSvWESphHHnbL38oihmCj3k1Mx1kPWW.png', '2019-05-15 12:29:59', '2019-05-15 12:29:59'),
-(2, '2147483647', 'Capture_1557981635', 'public/prescriptions/zI3WPJLXIp8f1kTU5Iacf5MXP1Xm0rycXAcZq8ws.png', '2019-05-16 04:40:35', '2019-05-16 04:40:35'),
-(3, '2147483647', 'Capture_1557985244', 'public/prescriptions/Capture_1557985244', '2019-05-16 05:40:44', '2019-05-16 05:40:44');
 
 -- --------------------------------------------------------
 
@@ -287,7 +297,7 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `body_html`, `created_at`, `handle`, `images`, `options`, `product_type`, `published_at`, `published_scope`, `tags`, `template_suffix`, `title`, `updated_at`, `variants`, `vendor`, `admin_graphql_api_id`, `image`) VALUES
-('2386022367292', 'qqwerty. faruq', '2019-01-17T20:20:03+05:30', 'bold-test-product-without-variants', '[{\"id\":7034355810364,\"product_id\":2386022367292,\"position\":1,\"created_at\":\"2019-01-17T20:20:03+05:30\",\"updated_at\":\"2019-04-27T16:05:07+05:30\",\"alt\":null,\"width\":1000,\"height\":1000,\"src\":\"https:\\/\\/cdn.shopify.com\\/s\\/files\\/1\\/0012\\/0658\\/3356\\/products\\/bold-red.jpg?v=1556361307\",\"variant_ids\":[22358899097660],\"admin_graphql_api_id\":\"gid:\\/\\/shopify\\/ProductImage\\/7034355810364\"},{\"id\":7608243224636,\"product_id\":2386022367292,\"position\":2,\"created_at\":\"2019-04-02T17:12:33+05:30\",\"updated_at\":\"2019-04-27T20:22:55+05:30\",\"alt\":null,\"width\":934,\"height\":1064,\"src\":\"https:\\/\\/cdn.shopify.com\\/s\\/files\\/1\\/0012\\/0658\\/3356\\/products\\/output-onlinejpgtools.jpg?v=1556376775\",\"variant_ids\":[22358903881788],\"admin_graphql_api_id\":\"gid:\\/\\/shopify\\/ProductImage\\/7608243224636\"},{\"id\":7608250564668,\"product_id\":2386022367292,\"position\":3,\"created_at\":\"2019-04-02T17:13:41+05:30\",\"updated_at\":\"2019-04-27T21:03:09+05:30\",\"alt\":null,\"width\":800,\"height\":800,\"src\":\"https:\\/\\/cdn.shopify.com\\/s\\/files\\/1\\/0012\\/0658\\/3356\\/products\\/nSSKgPzx.jpg?v=1556379189\",\"variant_ids\":[],\"admin_graphql_api_id\":\"gid:\\/\\/shopify\\/ProductImage\\/7608250564668\"}]', '[{\"id\":3299156197436,\"product_id\":2386022367292,\"name\":\"Size\",\"position\":1,\"values\":[\"xx\",\"xxx\"]}]', 'Bold Test Product', '2019-01-17T20:20:02+05:30', 'global', 'Celllimit, Test1, Testnew', '', '#Bold Test Product without variants', '2019-05-08T11:42:04+05:30', '[{\"id\":22358899097660,\"product_id\":2386022367292,\"title\":\"xx\",\"price\":\"15.00\",\"sku\":\"21412\",\"position\":1,\"inventory_policy\":\"deny\",\"compare_at_price\":null,\"fulfillment_service\":\"manual\",\"inventory_management\":null,\"option1\":\"xx\",\"option2\":null,\"option3\":null,\"created_at\":\"2019-04-02T15:54:18+05:30\",\"updated_at\":\"2019-05-10T14:12:45+05:30\",\"taxable\":true,\"barcode\":\"\",\"grams\":0,\"image_id\":7034355810364,\"weight\":0,\"weight_unit\":\"kg\",\"inventory_item_id\":23095304454204,\"inventory_quantity\":-52,\"old_inventory_quantity\":-52,\"requires_shipping\":true,\"admin_graphql_api_id\":\"gid:\\/\\/shopify\\/ProductVariant\\/22358899097660\"},{\"id\":22358903881788,\"product_id\":2386022367292,\"title\":\"xxx\",\"price\":\"15.00\",\"sku\":\"21413\",\"position\":2,\"inventory_policy\":\"deny\",\"compare_at_price\":null,\"fulfillment_service\":\"manual\",\"inventory_management\":null,\"option1\":\"xxx\",\"option2\":null,\"option3\":null,\"created_at\":\"2019-04-02T15:55:44+05:30\",\"updated_at\":\"2019-05-10T14:12:45+05:30\",\"taxable\":true,\"barcode\":\"\",\"grams\":0,\"image_id\":7608243224636,\"weight\":0,\"weight_unit\":\"kg\",\"inventory_item_id\":23095311237180,\"inventory_quantity\":-12,\"old_inventory_quantity\":-12,\"requires_shipping\":true,\"admin_graphql_api_id\":\"gid:\\/\\/shopify\\/ProductVariant\\/22358903881788\"}]', 'Bold Commerce', 'gid://shopify/Product/2386022367292', '{\"id\":7034355810364,\"product_id\":2386022367292,\"position\":1,\"created_at\":\"2019-01-17T20:20:03+05:30\",\"updated_at\":\"2019-04-27T16:05:07+05:30\",\"alt\":null,\"width\":1000,\"height\":1000,\"src\":\"https:\\/\\/cdn.shopify.com\\/s\\/files\\/1\\/0012\\/0658\\/3356\\/products\\/bold-red.jpg?v=1556361307\",\"variant_ids\":[22358899097660],\"admin_graphql_api_id\":\"gid:\\/\\/shopify\\/ProductImage\\/7034355810364\"}');
+('1796282515522', '<div style=\"text-align: center;\"><span>Overview</span></div>\n<h2 style=\"text-align: center;\"><span>What is it?</span></h2>\n<div style=\"text-align: center;\"><span>Somofilcon A material in Aqualens 1D Daily Disposable (30 lens/box) makes these one of the healthiest contact lenses which allow 4 times more oxygen for all-day comfort. With 56% of water content, these lenses offer continuous wettability for 24 hours.</span></div>\n<hr>\n<div class=\"grid\">\n<div class=\"grid__item one-whole technical-heading\">\n<h2>Technical Information</h2>\n</div>\n<div class=\"grid__item large--one-half medium-down--one-whole table-one\">\n<table cellpadding=\"0\" cellspacing=\"0\">\n<tbody>\n<tr>\n<td>Base Curve</td>\n<td>8.6 mm</td>\n</tr>\n<tr>\n<td>Diameter</td>\n<td>14.1 mm</td>\n</tr>\n<tr>\n<td>Lens Material</td>\n<td>Somofilcon A</td>\n</tr>\n<tr>\n<td>Usage Duration</td>\n<td>Dailies</td>\n</tr>\n</tbody>\n</table>\n</div>\n<div class=\"grid__item large--one-half medium-down--one-whole table-two\">\n<table cellpadding=\"0\" cellspacing=\"0\">\n<tbody>\n<tr>\n<td>Gender</td>\n<td>Unisex</td>\n</tr>\n<tr>\n<td>Water Content</td>\n<td>56%</td>\n</tr>\n<tr>\n<td>Weight</td>\n<td>0.6000</td>\n</tr>\n<tr>\n<td>Packaging</td>\n<td>30 Lens per Box</td>\n</tr>\n</tbody>\n</table>\n</div>\n</div>', '2019-03-26T18:33:34+05:30', 'aqualens-24h-daily-contact-lenses-30-lens-box', '[{\"id\":4944145842242,\"product_id\":1796282515522,\"position\":1,\"created_at\":\"2019-03-26T18:33:35+05:30\",\"updated_at\":\"2019-03-26T18:33:35+05:30\",\"alt\":\"Aqualens\",\"width\":1325,\"height\":636,\"src\":\"https:\\/\\/cdn.shopify.com\\/s\\/files\\/1\\/0084\\/6957\\/7794\\/products\\/aqualens-24-h-contact-lens-30-lens-box-contact-lens_aqualens-24-h-dailies_-_1st_image.jpg?v=1553605415\",\"variant_ids\":[],\"admin_graphql_api_id\":\"gid:\\/\\/shopify\\/ProductImage\\/4944145842242\"},{\"id\":4999921827906,\"product_id\":1796282515522,\"position\":2,\"created_at\":\"2019-04-02T16:09:07+05:30\",\"updated_at\":\"2019-04-02T16:09:07+05:30\",\"alt\":null,\"width\":1325,\"height\":636,\"src\":\"https:\\/\\/cdn.shopify.com\\/s\\/files\\/1\\/0084\\/6957\\/7794\\/products\\/aqualens-24-h-monthly-disposable-with-lens-case-1-lens_118561-2nd-image_3.jpg?v=1554201547\",\"variant_ids\":[],\"admin_graphql_api_id\":\"gid:\\/\\/shopify\\/ProductImage\\/4999921827906\"}]', '[{\"id\":2406664732738,\"product_id\":1796282515522,\"name\":\"Default\",\"position\":1,\"values\":[\"10 Pairs\",\"30 Pairs\"]},{\"id\":2496862421058,\"product_id\":1796282515522,\"name\":\"Period\",\"position\":2,\"values\":[\"1 Month\",\"2 Month\"]}]', 'Medical', '2019-03-26T18:33:32+05:30', 'web', 'plans_plan_CYdPGM3Ivz5Bp9__300___1 Month, plans_plan_CYdPrcyFdHuzIj__300___2 Month+plans_plan_CYdSvHUcY1tIM9__300___1 Month+plans_plan_CYdTCsxfIFq6pR__300___2 Month', 'subscription', 'Aqualens Daily Contact Lenses', '2019-05-22T21:50:06+05:30', '[{\"id\":15240701345858,\"product_id\":1796282515522,\"title\":\"10 Pairs \\/ 1 Month\",\"price\":\"0.00\",\"sku\":\"134722\",\"position\":1,\"inventory_policy\":\"continue\",\"compare_at_price\":null,\"fulfillment_service\":\"manual\",\"inventory_management\":\"shopify\",\"option1\":\"10 Pairs\",\"option2\":\"1 Month\",\"option3\":null,\"created_at\":\"2019-04-21T09:53:09+05:30\",\"updated_at\":\"2019-05-22T17:00:31+05:30\",\"taxable\":true,\"barcode\":\"\",\"grams\":0,\"image_id\":null,\"weight\":0,\"weight_unit\":\"g\",\"inventory_item_id\":15848406646850,\"inventory_quantity\":-11,\"old_inventory_quantity\":-11,\"requires_shipping\":true,\"admin_graphql_api_id\":\"gid:\\/\\/shopify\\/ProductVariant\\/15240701345858\"},{\"id\":15302776750146,\"product_id\":1796282515522,\"title\":\"30 Pairs \\/ 1 Month\",\"price\":\"1200.00\",\"sku\":\"134723\",\"position\":2,\"inventory_policy\":\"continue\",\"compare_at_price\":null,\"fulfillment_service\":\"manual\",\"inventory_management\":\"shopify\",\"option1\":\"30 Pairs\",\"option2\":\"1 Month\",\"option3\":null,\"created_at\":\"2019-04-24T18:55:16+05:30\",\"updated_at\":\"2019-05-06T12:52:31+05:30\",\"taxable\":true,\"barcode\":\"\",\"grams\":0,\"image_id\":null,\"weight\":0,\"weight_unit\":\"g\",\"inventory_item_id\":15914678714434,\"inventory_quantity\":-2,\"old_inventory_quantity\":-2,\"requires_shipping\":true,\"admin_graphql_api_id\":\"gid:\\/\\/shopify\\/ProductVariant\\/15302776750146\"},{\"id\":15437613760578,\"product_id\":1796282515522,\"title\":\"10 Pairs \\/ 2 Month\",\"price\":\"0.00\",\"sku\":\"\",\"position\":3,\"inventory_policy\":\"continue\",\"compare_at_price\":null,\"fulfillment_service\":\"manual\",\"inventory_management\":\"shopify\",\"option1\":\"10 Pairs\",\"option2\":\"2 Month\",\"option3\":null,\"created_at\":\"2019-05-06T12:53:49+05:30\",\"updated_at\":\"2019-05-06T12:53:49+05:30\",\"taxable\":true,\"barcode\":\"\",\"grams\":0,\"image_id\":null,\"weight\":0,\"weight_unit\":\"g\",\"inventory_item_id\":16064168230978,\"inventory_quantity\":0,\"old_inventory_quantity\":0,\"requires_shipping\":true,\"admin_graphql_api_id\":\"gid:\\/\\/shopify\\/ProductVariant\\/15437613760578\"},{\"id\":15437618479170,\"product_id\":1796282515522,\"title\":\"30 Pairs \\/ 2 Month\",\"price\":\"1200.00\",\"sku\":\"\",\"position\":4,\"inventory_policy\":\"continue\",\"compare_at_price\":null,\"fulfillment_service\":\"manual\",\"inventory_management\":\"shopify\",\"option1\":\"30 Pairs\",\"option2\":\"2 Month\",\"option3\":null,\"created_at\":\"2019-05-06T12:54:21+05:30\",\"updated_at\":\"2019-05-21T17:01:46+05:30\",\"taxable\":true,\"barcode\":\"\",\"grams\":0,\"image_id\":null,\"weight\":0,\"weight_unit\":\"g\",\"inventory_item_id\":16064173146178,\"inventory_quantity\":-1,\"old_inventory_quantity\":-1,\"requires_shipping\":true,\"admin_graphql_api_id\":\"gid:\\/\\/shopify\\/ProductVariant\\/15437618479170\"}]', 'Aqualens', 'gid://shopify/Product/1796282515522', '{\"id\":4944145842242,\"product_id\":1796282515522,\"position\":1,\"created_at\":\"2019-03-26T18:33:35+05:30\",\"updated_at\":\"2019-03-26T18:33:35+05:30\",\"alt\":\"Aqualens\",\"width\":1325,\"height\":636,\"src\":\"https:\\/\\/cdn.shopify.com\\/s\\/files\\/1\\/0084\\/6957\\/7794\\/products\\/aqualens-24-h-contact-lens-30-lens-box-contact-lens_aqualens-24-h-dailies_-_1st_image.jpg?v=1553605415\",\"variant_ids\":[],\"admin_graphql_api_id\":\"gid:\\/\\/shopify\\/ProductImage\\/4944145842242\"}');
 
 -- --------------------------------------------------------
 
@@ -327,14 +337,6 @@ CREATE TABLE `products_variants` (
   `admin_graphql_api_id` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `products_variants`
---
-
-INSERT INTO `products_variants` (`id`, `barcode`, `compare_at_price`, `created_at`, `fulfillment_service`, `grams`, `image_id`, `inventory_item_id`, `inventory_management`, `inventory_policy`, `inventory_quantity`, `old_inventory_quantity`, `inventory_quantity_adjustment`, `option1`, `option2`, `option3`, `presentment_prices`, `position`, `price`, `product_id`, `requires_shipping`, `sku`, `taxable`, `tax_code`, `title`, `updated_at`, `weight`, `weight_unit`, `admin_graphql_api_id`) VALUES
-('22358899097660', '', NULL, '2019-04-02T15:54:18+05:30', 'manual', 0, '7034355810364', '23095304454204', NULL, 'deny', -52, -52, NULL, 'xx', NULL, NULL, NULL, 1, 15, '2386022367292', 1, '21412', 1, NULL, 'xx', '2019-05-10T14:12:45+05:30', 0, 'kg', 'gid://shopify/ProductVariant/22358899097660'),
-('22358903881788', '', NULL, '2019-04-02T15:55:44+05:30', 'manual', 0, '7608243224636', '23095311237180', NULL, 'deny', -12, -12, NULL, 'xxx', NULL, NULL, NULL, 2, 15, '2386022367292', 1, '21413', 1, NULL, 'xxx', '2019-05-10T14:12:45+05:30', 0, 'kg', 'gid://shopify/ProductVariant/22358903881788');
-
 -- --------------------------------------------------------
 
 --
@@ -360,12 +362,21 @@ CREATE TABLE `razor_addons` (
 
 CREATE TABLE `razor_customers` (
   `id` varchar(191) NOT NULL,
+  `shopify_customer_id` varchar(191) NOT NULL,
   `name` varchar(50) NOT NULL,
   `contact` varchar(191) NOT NULL,
   `email` varchar(191) NOT NULL,
-  `notes` text NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `notes` text,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updated_at` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `razor_customers`
+--
+
+INSERT INTO `razor_customers` (`id`, `shopify_customer_id`, `name`, `contact`, `email`, `notes`, `created_at`, `updated_at`) VALUES
+('cust_CYvJtGwlheiS67', '1096248983618', 'Marmeto Test', '917406366665', '7406366665@guest.com', NULL, '2019-05-23 04:19:04', '2019-05-23 09:49:04');
 
 -- --------------------------------------------------------
 
@@ -404,42 +415,7 @@ CREATE TABLE `subscriptions` (
 --
 
 INSERT INTO `subscriptions` (`id`, `entity`, `plan_id`, `customer_id`, `total_count`, `customer_notify`, `start_at`, `end_at`, `quantity`, `notes`, `addons`, `status`, `paid_count`, `current_start`, `current_end`, `ended_at`, `charge_at`, `auth_attempts`, `payment_id`, `short_url`, `created_at`, `updated_at`, `expire_by`) VALUES
-('sub_CWBgXO6CtJK16y', 'subscription', 'plan_CVKxrA1xXVEubO', 'cust_CWACgImcwU9cWq', 6, 1, '1559260800', '1572460200', 1, '{}', NULL, 'authenticated', 0, NULL, NULL, NULL, '1559260800', 0, 'pay_CWBgy32XKKGIle', 'https://rzp.io/i/SgEhoIz', '1558007475', NULL, NULL),
-('sub_CWbJf00w8KuYh5', 'subscription', 'plan_CVKxrA1xXVEubO', 'cust_CXgBInPrVVCslW', 6, 1, '1559154600', '1572373800', 1, '{}', NULL, 'authenticated', 0, NULL, NULL, NULL, '1559154600', 0, 'pay_CXgCc0o1Y3aGqj', 'https://rzp.io/i/ryBh1OK', '1558333212', NULL, NULL),
-('sub_CWY350pnJzgqkB', 'subscription', 'plan_CVKxrA1xXVEubO', 'cust_CWACgImcwU9cWq', 6, 1, '1558895400', '1572114600', 1, '{}', NULL, 'authenticated', 0, NULL, NULL, NULL, '1558895400', 0, 'pay_CWY3IG6EcvhJ4l', 'https://rzp.io/i/XITceAo', '1558086232', NULL, NULL),
-('sub_CWYFtbYE41rnC6', 'subscription', 'plan_CVKxrA1xXVEubO', 'cust_CWACgImcwU9cWq', 6, 1, '1558895400', '1572114600', 1, '{}', NULL, 'authenticated', 0, NULL, NULL, NULL, '1558895400', 0, 'pay_CWYGF8W32cDVvy', 'https://rzp.io/i/qrflwXU', '1558086959', NULL, NULL),
-('sub_CWZFr6JUkMBkQP', 'subscription', 'plan_CVKxrA1xXVEubO', 'cust_CWACgImcwU9cWq', 6, 1, '1558895400', '1572114600', 1, '{}', NULL, 'authenticated', 0, NULL, NULL, NULL, '1558895400', 0, 'pay_CWZGWNYKTVHZAi', 'https://rzp.io/i/KQLm91W', '1558090479', NULL, NULL),
-('sub_CWZq12O3ZRF1i1', 'subscription', 'plan_CVKxrA1xXVEubO', 'cust_CWACgImcwU9cWq', 6, 1, '1558895400', '1572114600', 1, '{}', NULL, 'authenticated', 0, NULL, NULL, NULL, '1558895400', 0, 'pay_CWZsn17ruiKe7k', 'https://rzp.io/i/D26yXVz', '1558092533', NULL, NULL),
-('sub_CXi93ECrM0lXCs', 'subscription', 'plan_CVKxrA1xXVEubO', 'cust_CWACgImcwU9cWq', 6, 1, '1572460200', '1585593000', 1, '{}', NULL, 'authenticated', 0, NULL, NULL, NULL, '1572460200', 0, 'pay_CXiA5nuJJ5ofWK', 'https://rzp.io/i/u7dRwIZ', '1558340127', NULL, NULL),
-('sub_CXiC7dTggx3XMm', 'subscription', 'plan_CVKxrA1xXVEubO', 'cust_CWACgImcwU9cWq', 6, 1, '1572460200', '1585593000', 1, '{}', NULL, 'authenticated', 0, NULL, NULL, NULL, '1572460200', 0, 'pay_CXiCLXrMFqf1SL', 'https://rzp.io/i/IKSe1rb', '1558340301', NULL, NULL),
-('sub_CXin32Q4ipMUuV', 'subscription', 'plan_CVKxrA1xXVEubO', 'cust_CXin2domIEAruQ', 6, 1, '1559154600', '1572373800', 1, '{}', NULL, 'authenticated', 0, NULL, NULL, NULL, '1559154600', 0, 'pay_CXiqUsZQBxGkLF', 'https://rzp.io/i/GbeKZYE', '1558342399', NULL, NULL),
-('sub_CXivNLp3ZWlIFs', 'subscription', 'plan_CVKxrA1xXVEubO', 'cust_CXin2domIEAruQ', 6, 1, '1572460200', '1585593000', 1, '{}', NULL, 'authenticated', 0, NULL, NULL, NULL, '1572460200', 0, 'pay_CXiz1SEO4o3iAd', 'https://rzp.io/i/ai7hlvw', '1558342872', NULL, NULL);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `subscription_links`
---
-
-CREATE TABLE `subscription_links` (
-  `subscription_id` varchar(191) NOT NULL,
-  `shopify_customer_id` varchar(191) NOT NULL,
-  `razor_customer_id` varchar(191) NOT NULL,
-  `product_id` varchar(191) NOT NULL,
-  `plan_id` varchar(191) NOT NULL,
-  `payment_id` varchar(191) NOT NULL,
-  `created_at` varchar(100) NOT NULL,
-  `updated_at` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `subscription_links`
---
-
-INSERT INTO `subscription_links` (`subscription_id`, `shopify_customer_id`, `razor_customer_id`, `product_id`, `plan_id`, `payment_id`, `created_at`, `updated_at`) VALUES
-('sub_CWbJf00w8KuYh5', '1323698913340', 'cust_CWACgImcwU9cWq', '', 'plan_CVKxrA1xXVEubO', 'pay_CWZsn17ruiKe7k', '', ''),
-('sub_CXin32Q4ipMUuV', '1301116518460', 'cust_CXin2domIEAruQ', '2386022367292', 'plan_CVKxrA1xXVEubO', 'pay_CXiqUsZQBxGkLF', '2019-05-20 09:00:37', '2019-05-20 09:00:37'),
-('sub_CXivNLp3ZWlIFs', '1301116518460', 'cust_CXin2domIEAruQ', '2386022367292', 'plan_CVKxrA1xXVEubO', 'pay_CXiz1SEO4o3iAd', '2019-05-20 09:06:02', '2019-05-20 09:06:02');
+('sub_CYvMV664osICWE', 'subscription', 'plan_CYdUixhQWdC8O7', 'cust_CYvJtGwlheiS67', 6, 1, '1559413800', '1572633000', 1, '{}', NULL, 'authenticated', 0, NULL, NULL, NULL, '1559413800', 0, 'pay_CYvNUP9yzXs7B0', 'https://rzp.io/i/Fhc0zfc', '1558605012', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -480,7 +456,7 @@ ALTER TABLE `freedays`
 -- Indexes for table `lens_powers`
 --
 ALTER TABLE `lens_powers`
-  ADD PRIMARY KEY (`customer_id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `migrations`
@@ -528,7 +504,8 @@ ALTER TABLE `products_variants`
 -- Indexes for table `razor_customers`
 --
 ALTER TABLE `razor_customers`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `shopify_id` (`shopify_customer_id`);
 
 --
 -- Indexes for table `subscriptions`
@@ -553,6 +530,11 @@ ALTER TABLE `users`
 ALTER TABLE `freedays`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
+-- AUTO_INCREMENT for table `lens_powers`
+--
+ALTER TABLE `lens_powers`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
@@ -561,7 +543,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `prescriptions`
 --
 ALTER TABLE `prescriptions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `users`
 --
